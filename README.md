@@ -2,8 +2,6 @@
 
 Clickhouse docker compose and docs
 
-### ✅ Breakdown of What You’re Seeing
-
 #### 1. **Your SQL-created user (`my_user`) is stored in:**
 
 ```bash
