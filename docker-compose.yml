@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  clickhouse:
+    image: clickhouse/clickhouse-server:25.7.2.54
+    ports:
+      - "18123:8123" # HTTP interface for Caddy
+      - "19000:9000" # Native TCP interface
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+      - ./scripts/init-clickhouse.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./config/users.d/:/etc/clickhouse-server/users.d/
+    networks:
+      - pulse-network
+    environment:
+      CLICKHOUSE_USER: ${CLICKHOUSE_USER}
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD}
+
+volumes:
+  clickhouse-data:
+
+networks:
+  pulse-network:
+    driver: bridge
