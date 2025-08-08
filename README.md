@@ -17,6 +17,11 @@ Clickhouse docker compose and docs
   contains:
 
   ```sql
+  CREATE USER IF NOT EXISTS my_user
+    IDENTIFIED WITH plaintext_password BY 'my_password';
+
+  or
+
   ATTACH USER my_user IDENTIFIED WITH plaintext_password BY 'my_password';
   ```
 
